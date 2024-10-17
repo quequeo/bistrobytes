@@ -1,6 +1,6 @@
 # 📚 BistroBytes
 
-BistroBytes is a modern restaurante management system built with Ruby on Rails API
+BistroBytes is a modern restaurant management system built with Ruby on Rails API
 
 ## 🚀 Features
 
