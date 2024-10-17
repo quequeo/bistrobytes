@@ -1,24 +1,60 @@
-# README
+# 📚 BistroBytes
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+BistroBytes is a modern restaurante management system built with Ruby on Rails API
 
-Things you may want to cover:
+## 🚀 Features
 
-* Ruby version
+- 📖 Restaurant, Menu, and Menu Item management
+- 📝 Import data from JSON
+- 👥 User account system
+- 🔍 Advanced search functionality
 
-* System dependencies
+## 🛠️ Tech Stack
 
-* Configuration
+- **Backend**: Ruby on Rails
+- **Database**: PostgreSQL
 
-* Database creation
+## 🏗️ Setup
 
-* Database initialization
+### Backend (Rails)
 
-* How to run the test suite
+1. Navigate to the project directory:
+   ```sh
+   cd bistrobytes
+   ```
 
-* Services (job queues, cache servers, search engines, etc.)
+2. Install dependencies:
+   ```sh
+   bundle install
+   ```
 
-* Deployment instructions
+3. Set up the database:
+   ```sh
+   rails db:create db:migrate
+   ```
 
-* ...
+4. Start the Rails server:
+   ```sh
+   rails s
+   ```
+
+## 🧪 Testing
+
+First run the data base migrations for test environment
+```sh
+rails db:test:prepare
+```
+
+Run the test suite with:
+```sh
+rspec
+```
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+Project Link: [https://github.com/yourusername/bistrobytes](https://github.com/quequeo/bistrobytes) 
+
+## 📄 License
+
+This project is licensed under the MIT License
