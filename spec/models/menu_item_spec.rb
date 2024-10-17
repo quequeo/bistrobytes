@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe MenuItem, type: :model do
-  let(:menu) { Menu.create(name: "Test Menu") }
+  let(:restaurant) { FactoryBot.create(:restaurant) }
+  let(:menu) { FactoryBot.create(:menu, restaurant: restaurant) }
 
   it "is valid with valid attributes" do
     menu_item = MenuItem.new(name: "Fish1", price: 10.99, menu: menu)
