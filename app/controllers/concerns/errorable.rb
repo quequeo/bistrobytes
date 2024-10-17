@@ -19,5 +19,5 @@ module Errorable
 
   def bad_request(exception)
     render json: { error: exception.message }, status: :bad_request
-  end
+  end 
 end
