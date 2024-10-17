@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::MenuItemsController, type: :controller do
+  let(:user) { create(:user) }
+
+  before do
+    sign_in user
+  end
+
   let(:restaurant) { create(:restaurant) }
   let(:menu) { create(:menu, restaurant: restaurant) }
 

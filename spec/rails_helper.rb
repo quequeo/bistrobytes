@@ -23,11 +23,16 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
+require 'devise'
+
 RSpec.configure do |config|
   config.fixture_paths = ["#{::Rails.root}/spec/fixtures"]
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
+
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::IntegrationHelpers, type: :request
 
   config.include FactoryBot::Syntax::Methods
 
