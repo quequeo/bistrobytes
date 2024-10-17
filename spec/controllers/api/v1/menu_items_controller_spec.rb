@@ -1,12 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::MenuItemsController, type: :controller do
-  let(:menu) { create(:menu) }
+  let(:restaurant) { create(:restaurant) }
+  let(:menu) { create(:menu, restaurant: restaurant) }
 
   describe "GET #index" do
     it "returns a success response" do
       create_list(:menu_item, 3, menu: menu)
-      get :index, params: { menu_id: menu.id }
+      get :index, params: { restaurant_id: restaurant.id, menu_id: menu.id }
       expect(response).to be_successful
       expect(JSON.parse(response.body).size).to eq(3)
     end
@@ -24,12 +25,12 @@ RSpec.describe Api::V1::MenuItemsController, type: :controller do
     context "with valid params" do
       it "creates a new MenuItem" do
         expect {
-          post :create, params: { menu_id: menu.id, menu_item: attributes_for(:menu_item) }
+          post :create, params: { restaurant_id: restaurant.id, menu_id: menu.id, menu_item: attributes_for(:menu_item) }
         }.to change(MenuItem, :count).by(1)
       end
 
       it "renders a JSON response with the new menu_item" do
-        post :create, params: { menu_id: menu.id, menu_item: attributes_for(:menu_item) }
+        post :create, params: { restaurant_id: restaurant.id, menu_id: menu.id, menu_item: attributes_for(:menu_item) }
         expect(response).to have_http_status(:created)
         expect(response.content_type).to eq('application/json; charset=utf-8')
       end
@@ -37,7 +38,7 @@ RSpec.describe Api::V1::MenuItemsController, type: :controller do
 
     context "with invalid params" do
       it "renders a JSON response with errors" do
-        post :create, params: { menu_id: menu.id, menu_item: attributes_for(:menu_item, name: nil) }
+        post :create, params: { restaurant_id: restaurant.id, menu_id: menu.id, menu_item: attributes_for(:menu_item, name: nil) }
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json; charset=utf-8')
       end
