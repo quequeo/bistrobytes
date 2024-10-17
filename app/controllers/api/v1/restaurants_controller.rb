@@ -6,6 +6,12 @@ class Api::V1::RestaurantsController < ApplicationController
     render json: @restaurants, meta: pagination_meta(@restaurants)
   end
 
+  def search
+    @q = Restaurant.ransack(params[:q])
+    @restaurants = @q.result.page(params[:page]).per(10)
+    render json: @restaurants, meta: pagination_meta(@restaurants), adapter: :json
+  end
+
   def show
     render json: @restaurant, include: { menus: { include: :menu_items } }
   end
