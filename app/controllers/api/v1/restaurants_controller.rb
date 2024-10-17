@@ -2,8 +2,8 @@ class Api::V1::RestaurantsController < ApplicationController
   before_action :set_restaurant, only: [:show, :update, :destroy]
 
   def index
-    @restaurants = Restaurant.all
-    render json: @restaurants
+    @restaurants = Restaurant.page(params[:page]).per(10)
+    render json: @restaurants, meta: pagination_meta(@restaurants)
   end
 
   def show
@@ -40,5 +40,15 @@ class Api::V1::RestaurantsController < ApplicationController
 
   def restaurant_params
     params.require(:restaurant).permit(:name, :address, :phone)
+  end
+
+  def pagination_meta(object)
+    {
+      current_page: object.current_page,
+      next_page: object.next_page,
+      prev_page: object.prev_page,
+      total_pages: object.total_pages,
+      total_count: object.total_count
+    }
   end
 end
