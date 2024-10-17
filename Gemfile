@@ -6,6 +6,8 @@ gem "puma", ">= 5.0"
 gem "tzinfo-data", platforms: %i[ mswin mswin64 mingw x64_mingw jruby ]
 gem "bootsnap", require: false
 gem "rack-cors"
+gem "active_model_serializers", "~> 0.10.13"
+gem "kaminari"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ], require: "debug/prelude"
